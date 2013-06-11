@@ -512,7 +512,7 @@ namespace spdpointsviewer
 		
 		CatDisplayInfo createdDis;
 		createdDis.pointSize = 1;
-		color.setRgb(0, 229, 238, 255);
+		color.setRgb(0, 229, 238, 255); 
 		createdDis.red = color.redF();
 		createdDis.green = color.greenF();
 		createdDis.blue = color.blueF();
