@@ -32,6 +32,9 @@ set (SPDPV_PACKAGE "SPDPY")
 set(SPDLIB_IO_INCLUDE_DIR /usr/local/include CACHE PATH "Include PATH for SPDLibIO")
 set(SPDLIB_IO_LIB_PATH /usr/local/lib CACHE PATH "Library PATH for SPDLibIO")
 
+set(HDF5_INCLUDE_DIR /usr/local/include CACHE PATH "Include PATH for HDF5")
+set(HDF5_LIB_PATH /usr/local/lib CACHE PATH "Library PATH for HDF5")
+
 set(SPDPV_APP SPDPointsViewer)
 ###############################################################################
 
@@ -163,20 +166,24 @@ endif (QT_QTOPENGL_FOUND)
 
 INCLUDE( ${QT_USE_FILE} )
 
-find_package(GLUT REQUIRED)
 find_package(OpenGL REQUIRED)
 if (OPENGL_FOUND)
 	include_directories (${OPENGL_INCLUDE_DIR})
 endif(OPENGL_FOUND)
 
-find_package( HDF5 1.8.0 REQUIRED )
-if (HDF5_FOUND)
-	include_directories (${HDF5_INCLUDE_DIRS} ${HDF5_INCLUDE_DIR})
-	set (HDF5_CXX_LIBRARIES hdf5_cpp)
-endif(HDF5_FOUND)
+include_directories(${HDF5_INCLUDE_DIR})
+if (MSVC)
+    set(HDF5_LIBRARIES -LIBPATH:${HDF5_LIB_PATH} hdf5dll.lib hdf5_cppdll.lib)
+else()
+    set(HDF5_LIBRARIES -L${HDF5_LIB_PATH} -lhdf5 -lhdf5_hl -lhdf5_cpp)
+endif(MSVC)
 
 include_directories(${SPDLIB_IO_INCLUDE_DIR})
-set(SPDLIB_LIBRARY -L${SPDLIB_IO_LIB_PATH} -lspdio )
+if(MSVC)
+    set(SPDLIB_LIBRARY -LIBPATH:${SPDLIB_IO_LIB_PATH} libspdio.lib)
+else()
+    set(SPDLIB_LIBRARY -L${SPDLIB_IO_LIB_PATH} -lspdio )
+endif(MSVC)
 
 ###############################################################################
 
@@ -252,6 +259,8 @@ ENDIF( APPLE )
 TARGET_LINK_LIBRARIES( ${PROGNAME} ${QT_LIBRARIES} ${QT_QTOPENGL_LIBRARY} ${SPDLIB_LIBRARY} ${GDAL_LIBRARY} ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
 
 ###############################################################################
+# Installation
+install(TARGETS ${PROGNAME} DESTINATION bin PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
 ###############################################################################
 # Create Distribution

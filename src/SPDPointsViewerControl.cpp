@@ -21,6 +21,7 @@
  */
 
 #include "SPDPointsViewerControl.h"
+#include <ctime>
 
 namespace spdpointsviewer
 {
