@@ -27,8 +27,17 @@
 
 using namespace spdpointsviewer;
 
+#ifdef _WIN32
+int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,int nCmdShow)
+{
+    // grab them out of the compiler supplied variables
+    int argc = __argc;
+    char **argv = __argv;
+#else
 int main(int argc, char *argv[])
 {
+#endif
+
 	SPDPointsViewerCreateOverviewImage *createOverviewImageProxy = new SPDPointsViewerCreateOverviewImage();
     SPDPointsViewerApplication app(argc, argv, createOverviewImageProxy);
     SPDPointsViewer *mainWin = new SPDPointsViewer();
