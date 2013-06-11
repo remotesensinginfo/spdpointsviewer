@@ -90,7 +90,7 @@ namespace spdpointsviewer
 		{		
 			//cout << "Paint\n";
 			QSize imgSize = image->size();
-			QSize widgetSize = this->size();
+			//QSize widgetSize = this->size();
 			
 			setMinimumSize(imgSize.width(), imgSize.height());
 			
