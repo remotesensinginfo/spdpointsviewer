@@ -4,7 +4,7 @@
 #define MyAppName "SPDPointsViewer"
 #define MyAppVersion "1.0"
 #define MyAppPublisher "Pete Bunting"
-#define MyAppURL "https://sourceforge.net/projects/spdpointsviewer/"
+#define MyAppURL "https://bitbucket.org/petebunting/spd-3d-points-viewer"
 #define MyAppExeName "SPDPointsViewer.exe"
 
 [Setup]
