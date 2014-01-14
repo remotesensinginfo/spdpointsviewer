@@ -27,6 +27,12 @@ namespace spdpointsviewer
 	SPDPointsViewerApplication::SPDPointsViewerApplication(int argc, char *argv[], SPDPointsViewerCreateOverviewImage *createOverviewImageProxy) : QApplication(argc, argv)
 	{
 		this->createOverviewImageProxy = createOverviewImageProxy;
+        
+        if(argc == 2)
+        {
+            QString file2Open = argv[1];
+            createOverviewImageProxy->loadSPDFile(file2Open);
+        }
 	}
 	
 	bool SPDPointsViewerApplication::event(QEvent *event)
