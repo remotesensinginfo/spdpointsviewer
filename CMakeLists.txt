@@ -27,13 +27,19 @@ set (SPDPV_PACKAGE_VERSION "${SPDPV_VERSION_MAJOR}.${SPDPV_VERSION_MINOR}.${SPDP
 set (SPDPV_PACKAGE_STRING "SPDPV ${SPDPV_VERSION_MAJOR}.${SPDPV_VERSION_MINOR}.${SPDPV_VERSION_PATCH}")
 set (SPDPV_PACKAGE_BUGREPORT "spdlib-develop@lists.sourceforge.net")
 set (SPDPV_PACKAGE "SPDPointsViewer")
-set (SPDPV_PACKAGE "SPDPY")
+set (SPDPV_PACKAGE "SPDPV")
 
 set(SPDLIB_IO_INCLUDE_DIR /usr/local/include CACHE PATH "Include PATH for SPDLibIO")
 set(SPDLIB_IO_LIB_PATH /usr/local/lib CACHE PATH "Library PATH for SPDLibIO")
 
 set(HDF5_INCLUDE_DIR /usr/local/include CACHE PATH "Include PATH for HDF5")
 set(HDF5_LIB_PATH /usr/local/lib CACHE PATH "Library PATH for HDF5")
+
+set(BOOST_INCLUDE_DIR /usr/local/include CACHE PATH "Include PATH for Boost")
+set(BOOST_LIB_PATH /usr/local/lib CACHE PATH "Library PATH for Boost")
+
+set(GDAL_INCLUDE_DIR /usr/local/include CACHE PATH "Include PATH for GDAL")
+set(GDAL_LIB_PATH /usr/local/lib CACHE PATH "Library PATH for GDAL")
 
 set(SPDPV_APP SPDPointsViewer)
 ###############################################################################
@@ -98,7 +104,7 @@ else()
   # Recommended C++ compilation flags
   # -Weffc++
   set(SPDPV_COMMON_CXX_FLAGS
-	"-pipe -ansi -Wall -Wpointer-arith -Wcast-align -Wcast-qual -Wredundant-decls -Wno-long-long")
+	"-Wall -Wpointer-arith -Wcast-align -Wcast-qual -Wredundant-decls -Wno-long-long -DNDEBUG")
 	#"-pedantic -ansi -Wall -Wpointer-arith -Wcast-align -Wcast-qual -Wfloat-equal -Wredundant-decls -Wno-long-long")
 
   if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
@@ -133,20 +139,22 @@ IF( APPLE )
 ###############################################################################
 # Check the required libraries are present
 
-FIND_PACKAGE(Boost)
-IF(Boost_FOUND)
-  INCLUDE_DIRECTORIES("${Boost_INCLUDE_DIRS}")
-  SET(Boost_USE_STATIC_LIBS OFF)
-  SET(Boost_USE_MULTITHREADED ON)
-  SET(Boost_USE_STATIC_RUNTIME OFF)
-ELSEIF(NOT Boost_FOUND)
-  MESSAGE(FATAL_ERROR "Unable to find correct Boost version. Did you set BOOST_ROOT?")
-ENDIF()
+include_directories(${BOOST_INCLUDE_DIR})
+if (MSVC)
+    # NOTE: Should really use find_package( Boost ) to get the right libs for Windows.
+    # not using at the moment (spdio doesn't need boost libs) so ignore
+    set(BOOST_LIBRARIES -LIBPATH:${BOOST_LIB_PATH} libboost_filesystem-vc100-mt-1_53.lib libboost_system-vc100-mt-1_53.lib)
+else()
+    set(BOOST_LIBRARIES -L${BOOST_LIB_PATH} -lboost_filesystem -lboost_system)
+endif(MSVC)
 
-find_package( GDAL 1.6.0 REQUIRED )
-if (GDAL_FOUND)
-	include_directories (${GDAL_INCLUDE_DIR})
-endif(GDAL_FOUND)
+
+include_directories(${GDAL_INCLUDE_DIR})
+if (MSVC)
+    set(GDAL_LIBRARIES -LIBPATH:${GDAL_LIB_PATH} gdal_i.lib)
+else()
+    set(GDAL_LIBRARIES -L${GDAL_LIB_PATH} -lgdal)
+endif(MSVC)
 
 set(QT_USE_OPENGL TRUE)
 
@@ -259,7 +267,7 @@ ELSE()
   ADD_EXECUTABLE( ${PROGNAME} ${SPDPV_SRCS} ${SPDPV_HDRS} ${SPDPV_MOC_SRCS} )
 ENDIF( APPLE )
 
-TARGET_LINK_LIBRARIES( ${PROGNAME} ${QT_LIBRARIES} ${QT_QTOPENGL_LIBRARY} ${SPDLIB_LIBRARY} ${GDAL_LIBRARY} ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
+TARGET_LINK_LIBRARIES( ${PROGNAME} ${QT_LIBRARIES} ${QT_QTOPENGL_LIBRARY} ${SPDLIB_LIBRARY} ${GDAL_LIBRARIES} ${BOOST_LIBRARIES} ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
 
 ###############################################################################
 # Installation
