@@ -35,6 +35,7 @@ namespace spdpointsviewer
 		void loadSPDFile(QString file);
 	private:
 		SPDPointsViewer *pointsViewer;
+		QString nextFile;
 	};
 	
 }
