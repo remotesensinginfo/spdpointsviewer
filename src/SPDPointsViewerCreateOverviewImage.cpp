@@ -33,6 +33,13 @@ namespace spdpointsviewer
 	void SPDPointsViewerCreateOverviewImage::setPointViewer(SPDPointsViewer *pointsViewer)
 	{
 		this->pointsViewer = pointsViewer;
+		
+		// Check if we have a file waiting
+		if (this->pointsViewer != NULL && !nextFile.isEmpty())
+		{
+			this->loadSPDFile(nextFile);
+			nextFile = "";
+		}
 	}
 	
 	void SPDPointsViewerCreateOverviewImage::loadSPDFile(QString file)
@@ -40,6 +47,10 @@ namespace spdpointsviewer
 		if(pointsViewer != NULL)
 		{
 			pointsViewer->loadSPDFile(file);
+		}
+		else
+		{
+			nextFile = file;
 		}
 	}
 
