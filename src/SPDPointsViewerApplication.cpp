@@ -24,7 +24,7 @@
 
 namespace spdpointsviewer
 {
-	SPDPointsViewerApplication::SPDPointsViewerApplication(int argc, char *argv[], SPDPointsViewerCreateOverviewImage *createOverviewImageProxy) : QApplication(argc, argv)
+	SPDPointsViewerApplication::SPDPointsViewerApplication(int& argc, char *argv[], SPDPointsViewerCreateOverviewImage *createOverviewImageProxy) : QApplication(argc, argv)
 	{
 		this->createOverviewImageProxy = createOverviewImageProxy;
         
