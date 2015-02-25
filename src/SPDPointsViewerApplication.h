@@ -40,7 +40,7 @@ namespace spdpointsviewer
 	{
 		Q_OBJECT
 	public:
-		SPDPointsViewerApplication(int argc, char *argv[], SPDPointsViewerCreateOverviewImage *createOverviewImageProxy);
+		SPDPointsViewerApplication(int& argc, char *argv[], SPDPointsViewerCreateOverviewImage *createOverviewImageProxy);
 	protected:
 		bool event(QEvent *);
 	private:
