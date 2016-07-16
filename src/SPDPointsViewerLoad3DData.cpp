@@ -1369,7 +1369,8 @@ namespace spdpointsviewer
                 
                 //cout << "Shapefile layer " << shpFileLayerName << endl;
                 
-                OGRDataSource *inputSHPDS = OGRSFDriverRegistrar::Open(inputSHP.c_str(), FALSE);
+                GDALDataset *inputSHPDS = (GDALDataset*) GDALOpenEx(inputSHP.c_str(), GDAL_OF_VECTOR, NULL, NULL, NULL);
+
 				if(inputSHPDS == NULL)
 				{
                     emit errorMessages("Could not open shapefile");
