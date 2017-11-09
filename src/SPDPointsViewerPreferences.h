@@ -33,7 +33,7 @@
 #include "SPDPointsViewer3DWidget.h"
 #include "SPDPointsViewerCommon.h"
 
-#include <QtGui>
+#include <QtWidgets>
 
 using namespace std;
 using namespace spdlib;

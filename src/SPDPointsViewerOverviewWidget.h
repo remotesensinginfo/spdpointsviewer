@@ -26,7 +26,7 @@
 #include <iostream>
 #include <string>
 
-#include <QtGui>
+#include <QtWidgets>
 
 using namespace std;
 

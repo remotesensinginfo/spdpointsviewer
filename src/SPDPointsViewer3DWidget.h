@@ -31,7 +31,7 @@
 #include <vector>
 #include <math.h>
 
-#include <QtGui>
+#include <QtWidgets>
 #include <QGLWidget>
 
 #include "SPDPointsViewerDisplayProfile.h"

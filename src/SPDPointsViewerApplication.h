@@ -28,7 +28,7 @@
 #include <string>
 
 #include <QtCore>
-#include <QtGui>
+#include <QtWidgets>
 
 #include "SPDPointsViewerCreateOverviewImage.h"
 

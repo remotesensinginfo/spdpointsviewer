@@ -28,7 +28,7 @@
 #include <string>
 #include <list>
 
-#include <QtGui>
+#include <QtWidgets>
 
 //#include "spd/SPDPoint.h"
 
