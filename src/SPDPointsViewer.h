@@ -23,7 +23,7 @@
 #ifndef POINTSVIEWER_H
 #define POINTSVIEWER_H
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "SPDPointsViewerOverviewWidget.h"
 #include "SPDPointsViewer3DWidget.h"

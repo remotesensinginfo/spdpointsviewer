@@ -28,7 +28,7 @@
 #include <string>
 
 #include <QtCore>
-#include <QtGui>
+#include <QtWidgets>
 
 #include "SPDPointsViewerException.h"
 #include "SPDPointsViewerCommon.h"

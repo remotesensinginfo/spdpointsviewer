@@ -20,7 +20,7 @@
  *
  */
 
-#include <QApplication>
+#include <QtWidgets>
 #include "SPDPointsViewer.h"
 #include "SPDPointsViewerApplication.h"
 #include "SPDPointsViewerCreateOverviewImage.h"

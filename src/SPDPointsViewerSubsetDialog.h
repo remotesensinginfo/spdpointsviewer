@@ -27,7 +27,7 @@
 #include <string>
 #include <sstream>
 
-#include <QtGui>
+#include <QtWidgets>
 #include <QtCore>
 
 #ifdef Q_WS_MAC
