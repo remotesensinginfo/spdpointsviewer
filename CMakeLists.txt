@@ -173,6 +173,11 @@ else()
     set(SPDLIB_LIBRARY -L${SPDLIB_IO_LIB_PATH} -lspdio )
 endif(MSVC)
 
+find_package(OpenGL REQUIRED)
+if (OPENGL_FOUND)
+	include_directories(${OPENGL_INCLUDE_DIR})
+endif(OPENGL_FOUND)
+
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -189,11 +194,6 @@ add_definitions(${Qt5Core_DEFINITIONS})
 add_definitions(${Qt5Gui_DEFINITIONS})
 add_definitions(${Qt5Widgets_DEFINITIONS})
 add_definitions(${Qt5OpenGL_DEFINITIONS})
-
-find_package(OpenGL REQUIRED)
-if (OPENGL_FOUND)
-	include_directories (${OPENGL_INCLUDE_DIR})
-endif(OPENGL_FOUND)
 
 ###############################################################################
 
