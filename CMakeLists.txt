@@ -81,7 +81,7 @@ file(WRITE "README.txt" "${README}")
 
 if(WIN32)
     if (MSVC)
-        if (MSVC80 OR MSVC90 OR MSVC10)
+        if (MSVC80 OR MSVC90 OR MSVC10 OR MSVC14)
             add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
             add_definitions(-D_CRT_SECURE_NO_WARNINGS)
             add_definitions(-D_CRT_NONSTDC_NO_WARNING)
@@ -89,10 +89,10 @@ if(WIN32)
         endif()
         
         if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
-            string(REGEX REPLACE "/W[0-4]" "/W4"
+            string(REGEX REPLACE "/W[0-4]" "/W2"
                    CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
         else()
-            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W2")
         endif()
 
         # Generate dot-user file with user-specific settings for Visual Studio project
@@ -101,10 +101,18 @@ if(WIN32)
         mark_as_advanced(MSVC_ENVIRONMENT_PATH)
         set(VCPROJ_USER_ENVIRONMENT_PATH_DEBUG "${ENVIRONMENT_PATH}")
         mark_as_advanced(VCPROJ_USER_ENVIRONMENT_PATH_DEBUG)
+		
+		# Use cmake's MSVC_VERSION to work out the name of the Boost/CGAL DLL's 
+        # to use (they use a different numbering scheme from cmake)
+        set(MSVC_STRING_1500 "vc90")
+        set(MSVC_STRING_1600 "vc100")
+        set(MSVC_STRING_1700 "vc110")
+        set(MSVC_STRING_1800 "vc120")
+        set(MSVC_STRING_1900 "vc140")
+        set(MSVC_STRING ${MSVC_STRING_${MSVC_VERSION}})
+        message(STATUS "Using MSVC String " ${MSVC_STRING})
     endif()
 
-	set(CMAKE_INCLUDE_PATH c:/osgeo4w/include;$ENV{CMAKE_INCLUDE_PATH})
-    set(CMAKE_LIBRARY_PATH c:/osgeo4w/lib;$ENV{CMAKE_LIBRARY_PATH})
 else()
   # Recommended C++ compilation flags
   set(SPDPV_COMMON_CXX_FLAGS "-Wall -Wpointer-arith -Wcast-align -Wcast-qual -Wredundant-decls -Wno-long-long -DNDEBUG")
