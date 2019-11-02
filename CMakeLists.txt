@@ -16,12 +16,11 @@
 project (SPDPointsViewer)
 
 set (PROJECT_SOURCE_DIR src)
-#set (PROJECT_HEADER_DIR include)
 
 # The version number.
 set (SPDPV_VERSION_MAJOR 3)
 set (SPDPV_VERSION_MINOR 0)
-set (SPDPV_VERSION_PATCH 1)
+set (SPDPV_VERSION_PATCH 2)
 set (SPDPV_VERSION "${SPDPV_VERSION_MAJOR}.${SPDPV_VERSION_MINOR}.${SPDPV_VERSION_PATCH}")
 set (SPDPV_PACKAGE_VERSION "${SPDPV_VERSION_MAJOR}.${SPDPV_VERSION_MINOR}.${SPDPV_VERSION_PATCH}")
 set (SPDPV_PACKAGE_STRING "SPDPV ${SPDPV_VERSION_MAJOR}.${SPDPV_VERSION_MINOR}.${SPDPV_VERSION_PATCH}")
@@ -213,48 +212,48 @@ add_definitions(${Qt5OpenGL_DEFINITIONS})
 # Build Application
 
 SET( SPDPV_SRCS
-	./src/main.cpp 
-	./src/SPDPointsViewerException.cpp 
-	./src/SPDPointsViewer.cpp 
-	./src/SPDPointsViewerColourTable.cpp
-	./src/SPDPointsViewerCreateOverviewImage.cpp 
-	./src/SPDPointsViewerApplication.cpp 
-	./src/SPDPointsViewerOverviewWidget.cpp 
-	./src/SPDPointsViewer3DWidget.cpp 
-	./src/SPDPointsViewerPreferences.cpp 
-	./src/SPDPointsViewerDisplayProfile.cpp 
-	./src/SPDPointsViewerConvertDialog.cpp 
-	./src/SPDPointsViewerControl.cpp 
-	./src/SPDPointsViewerReadPTXTMeshFile.cpp 
-	./src/SPDPointsViewerLoadOverviewImage.cpp 
-	./src/SPDPointsViewerLoad3DData.cpp 
-	./src/SPDPointsViewerSubsetDialog.cpp
+	${PROJECT_SOURCE_DIR}/main.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerException.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewer.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerColourTable.cpp
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerCreateOverviewImage.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerApplication.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerOverviewWidget.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewer3DWidget.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerPreferences.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerDisplayProfile.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerConvertDialog.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerControl.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerReadPTXTMeshFile.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerLoadOverviewImage.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerLoad3DData.cpp 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerSubsetDialog.cpp
 )
 
 SET( SPDPV_HDRS
-	./src/SPDPointsViewerCommon.h
-    ./src/SPDPointsViewerException.h
-	./src/SPDPointsViewerCreateOverviewImage.h 
-	./src/SPDPointsViewerReadPTXTMeshFile.h
-	./src/SPDPointsViewerColourTable.h
-	./src/SPDPointsViewer.h 
-	./src/SPDPointsViewerApplication.h 
-	./src/SPDPointsViewerOverviewWidget.h 
-	./src/SPDPointsViewer3DWidget.h 
-	./src/SPDPointsViewerPreferences.h 
-	./src/SPDPointsViewerDisplayProfile.h 
-	./src/SPDPointsViewerConvertDialog.h 
-	./src/SPDPointsViewerControl.h 
-	./src/SPDPointsViewerLoadOverviewImage.h 
-	./src/SPDPointsViewerLoad3DData.h 
-	./src/SPDPointsViewerSubsetDialog.h
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerCommon.h
+    ${PROJECT_SOURCE_DIR}/SPDPointsViewerException.h
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerCreateOverviewImage.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerReadPTXTMeshFile.h
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerColourTable.h
+	${PROJECT_SOURCE_DIR}/SPDPointsViewer.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerApplication.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerOverviewWidget.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewer3DWidget.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerPreferences.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerDisplayProfile.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerConvertDialog.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerControl.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerLoadOverviewImage.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerLoad3DData.h 
+	${PROJECT_SOURCE_DIR}/SPDPointsViewerSubsetDialog.h
 )
 
 INCLUDE_DIRECTORIES( ${CMAKE_BINARY_DIR} )
 
 IF(WIN32)
   # make GUI rather than console (suppresses console window) and add icon
-  ADD_EXECUTABLE( ${PROGNAME} WIN32 ${SPDPV_SRCS} ./src/SPDPointsViewer.rc)
+  ADD_EXECUTABLE( ${PROGNAME} WIN32 ${SPDPV_SRCS} ${PROJECT_SOURCE_DIR}/SPDPointsViewer.rc)
 ELSE()
   ADD_EXECUTABLE( ${PROGNAME} ${SPDPV_SRCS} ${SPDPV_HDRS} )
 ENDIF( WIN32 )
