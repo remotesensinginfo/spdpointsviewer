@@ -628,7 +628,7 @@ namespace spdpointsviewer
 			
 			spdFile = new SPDFile(inputSPDFile);
 			
-			SPDFileReader reader;
+			SPDFileReader reader = SPDFileReader();
 			reader.readHeaderInfo(inputSPDFile, spdFile);
 			
 			if((spdFile->getDecomposedPtDefined() == SPD_FALSE) &
