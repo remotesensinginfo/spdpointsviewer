@@ -116,7 +116,7 @@ namespace spdpointsviewer
 		}		
 	}
 	
-	QImage* SPDPointsViewerLoadOverviewImage::getImage()throw(SPDPointsViewerException)
+	QImage* SPDPointsViewerLoadOverviewImage::getImage()
 	{
 		if(imageCreated)
 		{

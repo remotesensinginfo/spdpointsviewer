@@ -149,7 +149,7 @@ namespace spdpointsviewer
         return maxVal;
     }
     
-    QColor SPDPointsViewerColourTable::findColour(unsigned int val)throw(SPDPointsViewerException)
+    QColor SPDPointsViewerColourTable::findColour(unsigned int val)
     {
         QColor outColor = QColor::fromRgb(0,0,0,255);
         bool foundVal = false;
@@ -191,7 +191,7 @@ namespace spdpointsviewer
         clrs->push_back(clrVal);
     }
     
-    unsigned int SPDPointsViewerColourTable::scaleVal(float val)throw(SPDPointsViewerException)
+    unsigned int SPDPointsViewerColourTable::scaleVal(float val)
     {
         if((val < 0) | (val > 1))
         {
