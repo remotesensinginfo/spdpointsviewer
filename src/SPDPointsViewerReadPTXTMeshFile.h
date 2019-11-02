@@ -46,8 +46,8 @@ namespace spdpointsviewer
 	{
 	public:
 		SPDPointsViewerReadPTXTMeshFile();
-		unsigned long countNumVertex(string inputFile)throw(SPDPointsViewerException);
-		void readInputFile(string inputFile, unsigned long numVertex, GLfloat *coordsXTri, GLfloat *coordsYTri, GLfloat *coordsZTri, float xOff, float yOff, float zOff)throw(SPDPointsViewerException);
+		unsigned long countNumVertex(string inputFile);
+		void readInputFile(string inputFile, unsigned long numVertex, GLfloat *coordsXTri, GLfloat *coordsYTri, GLfloat *coordsZTri, float xOff, float yOff, float zOff);
 		~SPDPointsViewerReadPTXTMeshFile();
 	private:
 		void tokenizeString(string line, char token, vector<string> *tokens, bool ignoreDuplicateTokens);

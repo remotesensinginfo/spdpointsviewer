@@ -42,12 +42,12 @@ namespace spdpointsviewer
 		msgs = message;
 	}
 	
-	const char* SPDPointsViewerException::what() const throw()
+	const char* SPDPointsViewerException::what()
 	{
 		return msgs.c_str();
 	}
 	
-	SPDPointsViewerException::~SPDPointsViewerException() throw()
+	SPDPointsViewerException::~SPDPointsViewerException()
 	{
 		// do nothing;
 	}

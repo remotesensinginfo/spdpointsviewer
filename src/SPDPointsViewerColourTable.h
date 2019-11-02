@@ -53,9 +53,9 @@ namespace spdpointsviewer
         unsigned int getMinVal();
         void setMaxVal(unsigned int maxVal);
         unsigned int getMaxVal();
-        QColor findColour(unsigned int val)throw(SPDPointsViewerException);
+        QColor findColour(unsigned int val);
         void addColorValPair(ClrVals clrVal);
-        unsigned int scaleVal(float val)throw(SPDPointsViewerException);
+        unsigned int scaleVal(float val);
 		~SPDPointsViewerColourTable();
     protected:
         QString name;

@@ -37,8 +37,8 @@ namespace spdpointsviewer
 		SPDPointsViewerException();
 		SPDPointsViewerException(const char *message);
 		SPDPointsViewerException(string message);
-		virtual ~SPDPointsViewerException() throw();
-		virtual const char* what() const throw();
+		virtual ~SPDPointsViewerException();
+		virtual const char* what();
 	protected:
 		string msgs;
 	};

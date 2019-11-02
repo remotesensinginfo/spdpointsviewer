@@ -47,7 +47,7 @@ namespace spdpointsviewer
 	public:
 		SPDPointsViewerLoadOverviewImage(SPDFile *spdFile);
 		void run();
-		QImage* getImage()throw(SPDPointsViewerException);
+		QImage* getImage();
 		SPDFile* getSPDFile();
 		~SPDPointsViewerLoadOverviewImage();
 	public: signals:

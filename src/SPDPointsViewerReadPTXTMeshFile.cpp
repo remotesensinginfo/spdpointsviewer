@@ -33,7 +33,7 @@ namespace spdpointsviewer
 		
 	}
 	
-	unsigned long SPDPointsViewerReadPTXTMeshFile::countNumVertex(string inputFile) throw(SPDPointsViewerException)
+	unsigned long SPDPointsViewerReadPTXTMeshFile::countNumVertex(string inputFile) 
 	{
 		unsigned long numVertex = 0;
 		ifstream openInFile;
@@ -76,7 +76,7 @@ namespace spdpointsviewer
 		return numVertex;
 	}
 	
-	void SPDPointsViewerReadPTXTMeshFile::readInputFile(string inputFile, unsigned long numVertex, GLfloat *coordsXTri, GLfloat *coordsYTri, GLfloat *coordsZTri, float xOff, float yOff, float zOff) throw(SPDPointsViewerException)
+	void SPDPointsViewerReadPTXTMeshFile::readInputFile(string inputFile, unsigned long numVertex, GLfloat *coordsXTri, GLfloat *coordsYTri, GLfloat *coordsZTri, float xOff, float yOff, float zOff) 
 	{
 		ifstream openInFile;
 		openInFile.open(inputFile.c_str());
