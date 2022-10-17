@@ -48,7 +48,7 @@ set(SPDPV_APP SPDPointsViewer)
 
 ###############################################################################
 # CMake settings
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.12)
 
 IF(NOT CMAKE_BUILD_TYPE)
   #SET(CMAKE_BUILD_TYPE "DEBUG")
@@ -77,7 +77,6 @@ file(WRITE "README.txt" "${README}")
 
 ###############################################################################
 # Platform and compiler specific settings
-
 if(WIN32)
     if (MSVC)
         if (MSVC80 OR MSVC90 OR MSVC10 OR MSVC14)
@@ -118,10 +117,10 @@ else()
   if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ${SPDPV_COMMON_CXX_FLAGS}") 
     if (CMAKE_COMPILER_IS_GNUCXX)
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0")
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -D_GLIBCXX_USE_CXX14_ABI=0")
     endif()   
   elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" OR "${CMAKE_CXX_COMPILER}" MATCHES "clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${SPDPV_COMMON_CXX_FLAGS} -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${SPDPV_COMMON_CXX_FLAGS} -std=c++14")
   endif()
   
 endif(WIN32)
@@ -258,7 +257,9 @@ ELSE()
   ADD_EXECUTABLE( ${PROGNAME} ${SPDPV_SRCS} ${SPDPV_HDRS} )
 ENDIF( WIN32 )
 
-TARGET_LINK_LIBRARIES( ${PROGNAME} Qt5::Core Qt5::Gui Qt5::Widgets Qt5::OpenGL ${SPDLIB_LIBRARY} ${GDAL_LIBRARIES} ${BOOST_LIBRARIES} ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
+#qt5_use_modules(${PROGNAME} Widgets OpenGL)
+
+TARGET_LINK_LIBRARIES( ${PROGNAME} Qt5::Core Qt5::Gui Qt5::Widgets Qt5::OpenGL ${SPDLIB_LIBRARY} ${GDAL_LIBRARIES} ${BOOST_LIBRARIES} ${GLUT_LIBRARY} ${OPENGL_LIBRARIES})
 
 ###############################################################################
 # Installation
